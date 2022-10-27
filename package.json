@@ -1,0 +1,25 @@
+{
+  "name": "gitplelive-voice-sdk",
+  "version": "0.0.1",
+  "description": "Gitple Voice SDK",
+  "main": "voice.js",
+  "author": "taehee <taehee.jang@gitplecorp.com>",
+  "license": "SEE LICENSE IN LICENSE.md",
+  "keywords": [
+    "gitplelive",
+    "gitplelive.io",
+    "voice",
+    "js"
+  ],
+  "homepage": "https://gitplelive.io",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/finset-io/gitplelive-voice-sdk.git"
+  },
+  "types": "index.d.ts",
+  "exports": {
+    ".": "./voice.js",
+    "./package.json": "./package.json",
+    "./dist/*": "./dist/*.js"
+  }
+}

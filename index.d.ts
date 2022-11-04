@@ -1,4 +1,3 @@
-/// <reference types="node" />
 import EventEmitter from 'events';
 export interface ClientError {
     code: number;

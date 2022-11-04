@@ -1,3 +1,4 @@
+/// <reference types="node" />
 import EventEmitter from 'events';
 export interface ClientError {
     code: number;
@@ -6,17 +7,28 @@ export interface ClientError {
     stack: string;
 }
 export interface InitConfig {
+    app_id: string;
     user_id: string;
     token: string;
     debug?: boolean;
 }
+export interface CallPayload {
+    id: string;
+    from?: string;
+    to?: string;
+    status: string | 'started' | 'answered' | 'completed' | 'failed' | 'unanswered' | 'rejected';
+    direction: string | 'outbound' | 'inbound';
+}
 export declare class VoiceClient extends EventEmitter {
-    private user_id;
+    private appId;
+    private userId;
+    private voiceAppId;
     private token;
     private debug;
     private nexmoClient;
     private session;
     private currentCall;
+    private currentTo;
     constructor(config: InitConfig);
     connectUser(): Promise<void>;
     disconnectUser(): Promise<void>;
@@ -28,4 +40,6 @@ export declare class VoiceClient extends EventEmitter {
     private destroyCall;
     private clearSession;
     private clearCall;
+    private decodeToken;
+    private setCallPayload;
 }

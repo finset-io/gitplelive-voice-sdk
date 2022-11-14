@@ -28,6 +28,23 @@ const gitpleLiveVoiceClient = new GitpleLiveVoice.VoiceClient({app_id, user_id, 
 ___
 
 ## Use
+### Get User Token
+- api
+  - GET https://{Gitple Live API Host}/v1/voice/users/{USER_ID}/token
+  - header
+    ```javascript
+    {
+      APP_API_KEY: 'APP API KEY',
+      APP_ID: 'APP ID'
+    }
+  - response
+    ```javascript
+    {
+      token: 'TOKEN'
+    }
+    ```
+  - expire: 24h
+
 ### Init
 - Initialize the SDK.
 ```javascript
@@ -150,4 +167,6 @@ ___
 |80401|invalid_token|Invalid Token
 |80402|no_connected_session|No Connected Session
 |80403|no_connected_call|No Connected Call
+|80801|not_found_device|Device Not Found (microphone)
+|80802|permission_denied|Permission Denied (microphone)
 |80999|unknown_error|Unknown Error. Please contact us at Gitple

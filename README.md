@@ -16,14 +16,26 @@ ___
 ```javascript
 import { VoiceClient } from 'gitplelive-voice-sdk';
 
-const gitpleLiveVoiceClient = new VoiceClient({app_id, user_id, token});
+const config = {
+  app_id,
+  user_id,
+  token
+};
+
+const gitpleLiveVoiceClient = new VoiceClient(config);
 ```
 
 ### browser
 ```javascript
 <script src="./node_modules/gitplelive-voice-sdk/dist/voice.min.js"></script>
 
-const gitpleLiveVoiceClient = new GitpleLiveVoice.VoiceClient({app_id, user_id, token});
+const config = {
+  app_id,
+  user_id,
+  token
+};
+
+const gitpleLiveVoiceClient = new GitpleLiveVoice.VoiceClient(config);
 ```
 ___
 
@@ -49,7 +61,16 @@ ___
 - Initialize the SDK.
 ```javascript
 try {
-  const gitpleLiveVoiceClient = new VoiceClient({app_id, user_id, token});
+  const config = {
+    app_id,
+    user_id,
+    token
+  };
+  // es6
+  const gitpleLiveVoiceClient = new VoiceClient(config);
+
+  // browser
+  const gitpleLiveVoiceClient = new GitpleLiveVoice.VoiceClient(config);
 } catch (error) {
   // handle error
 }

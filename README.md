@@ -120,6 +120,24 @@ try {
   // handle error
 }
 ```
+### Mute
+- Use it to mute my voice. Available after the call is connected.
+```javascript
+try {
+  await gitpleLiveVoiceClient.mute(true);
+} catch (error) {
+  // handle error
+}
+```
+### Unmute
+- Use to unmute. Available after the call is connected.
+```javascript
+try {
+  await gitpleLiveVoiceClient.mute(false);
+} catch (error) {
+  // handle error
+}
+```
 ### Event Listener
 ```javascript
 // Received when the call is created.
@@ -154,6 +172,7 @@ gitpleLiveVoiceClient.on('call_status_changed', (data) => {
   |status|desc|
   |:---|:---|
   |started|The call connection has been started|
+  |ringing|The destination has confirmed that the call is ringing|
   |answered|The destination has answered the call|
   |completed|The call is completed successfully|
   |failed|The call connection failed|

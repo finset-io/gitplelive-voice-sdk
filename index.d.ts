@@ -15,7 +15,7 @@ export interface CallPayload {
     id: string;
     from?: string;
     to?: string;
-    status: string | 'started' | 'answered' | 'completed' | 'failed' | 'unanswered' | 'rejected';
+    status: string | 'started' | 'ringing' | 'answered' | 'completed' | 'failed' | 'unanswered' | 'rejected';
     direction: string | 'outbound' | 'inbound';
 }
 export declare class VoiceClient extends EventEmitter {
@@ -28,12 +28,14 @@ export declare class VoiceClient extends EventEmitter {
     private session;
     private currentCall;
     private currentTo;
+    private me;
     constructor(config: InitConfig);
     connectUser(): Promise<void>;
     disconnectUser(): Promise<void>;
     call(to: string): Promise<void>;
     hangUp(): Promise<void>;
     dialUp(): Promise<void>;
+    mute(mode: boolean): Promise<void>;
     private createSession;
     private deleteSession;
     private destroyCall;
@@ -41,4 +43,5 @@ export declare class VoiceClient extends EventEmitter {
     private clearCall;
     private decodeToken;
     private setCallPayload;
+    private getMe;
 }

@@ -6,6 +6,7 @@ export interface ClientError {
     stack: string;
 }
 export interface InitConfig {
+    host: string;
     app_id: string;
     user_id: string;
     token: string;
@@ -19,10 +20,12 @@ export interface CallPayload {
     direction: string | 'outbound' | 'inbound';
 }
 export declare class VoiceClient extends EventEmitter {
+    private host;
     private appId;
     private userId;
     private voiceAppId;
     private token;
+    private meta;
     private debug;
     private nexmoClient;
     private session;
@@ -36,6 +39,7 @@ export declare class VoiceClient extends EventEmitter {
     hangUp(): Promise<void>;
     dialUp(): Promise<void>;
     mute(mode: boolean): Promise<void>;
+    checkSession(userId: string): Promise<boolean>;
     private createSession;
     private deleteSession;
     private destroyCall;
@@ -44,4 +48,6 @@ export declare class VoiceClient extends EventEmitter {
     private decodeToken;
     private setCallPayload;
     private getMe;
+    private checkUserSession;
+    private getSessionId;
 }

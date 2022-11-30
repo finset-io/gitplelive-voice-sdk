@@ -40,7 +40,7 @@ ___
 import { VoiceClient } from 'gitplelive-voice-sdk';
 
 const config = {
-  host, // api host, Without http:// or https://
+  host, // gitplelive api host (ex. live.example.com ), Without http:// or https:// or url path
   app_id,
   user_id,
   token
@@ -167,7 +167,7 @@ try {
 ### Check Destination Session
 - Use to check that the destination session exists. Lets you determine if the destination is connected to the SDK.
   - Returns the boolean value. (true = session present, false = no session)
-  - <span style="color:red">**CAUTION!**</span> If multiple sessions are not created indiscriminately and explicitly disconnected, the session may remain. If possible, please use the 'disconnect()' function to explicitly terminate the connection.
+  - <span style="color:red">**CAUTION!**</span> If multiple sessions are not created indiscriminately and explicitly disconnected, the session may remain. If possible, please use the **'disconnectUser()'** function to explicitly terminate the connection.
 ```javascript
 try {
   const flag = await gitpleLiveVoiceClient.checkSession("{Other USER ID}");

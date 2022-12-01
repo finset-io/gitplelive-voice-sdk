@@ -1,28 +1,23 @@
 # gitplelive-voice-sdk
 Gitple Live Voice SDK
 
-## Migration 0.0.x to 0.1.X
-#### Migration guide from SDK 0.0.x to 0.1.X)
+## Table of Contents
+  1. [Install](#Install)
+  1. [Import and Init](#import-and-init)
+  1. [Use](#use)
+     - [Init](#init)
+     - [Connect](#connect)
+     - [Disconnect](#disconnect)
+     - [Call](#call)
+     - [Dial Up](#dial-up)
+     - [Hang Up](#hang-up)
+     - [Mute](#mute)
+     - [Unmute](#unmute)
+     - [Check Destination Session](#check-destination-session)
+     - [Event Listener](#event-listener)
+  1. [Error](#error)
+  1. [Migration](#migration)
 
-- Initialize the SDK.
-  - The host field has been added to the initialization information.
-    ```javascript
-    try {
-      const config = {
-        host  // Added Fields
-        app_id,
-        user_id,
-        token
-      };
-      // es6
-      const gitpleLiveVoiceClient = new VoiceClient(config);
-
-      // browser
-      const gitpleLiveVoiceClient = new GitpleLiveVoice.VoiceClient(config);
-    } catch (error) {
-      // handle error
-    }
-    ```
 
 ## Install
 ```bash
@@ -87,7 +82,7 @@ ___
 ```javascript
 try {
   const config = {
-    host
+    host,
     app_id,
     user_id,
     token
@@ -167,7 +162,7 @@ try {
 ### Check Destination Session
 - Use to check that the destination session exists. Lets you determine if the destination is connected to the SDK.
   - Returns the boolean value. (true = session present, false = no session)
-  - <span style="color:red">**CAUTION!**</span> If multiple sessions are not created indiscriminately and explicitly disconnected, the session may remain. If possible, please use the **'disconnectUser()'** function to explicitly terminate the connection.
+  - **CAUTION!** If multiple sessions are not created indiscriminately and explicitly disconnected, the session may remain. If possible, please use the **'disconnectUser()'** function to explicitly terminate the connection.
 ```javascript
 try {
   const flag = await gitpleLiveVoiceClient.checkSession("{Other USER ID}");
@@ -214,12 +209,16 @@ gitpleLiveVoiceClient.on('call_status_changed', (data) => {
   |status|desc|
   |:---|:---|
   |started|The call connection has been started|
-  |ringing|The destination has confirmed that the call is ringing|
+  |ringing|The destination has confirmed that the call is ringing. It may be missing depending on the situation of the destination.|
   |answered|The destination has answered the call|
   |completed|The call is completed successfully|
   |failed|The call connection failed|
   |rejected|The call attempt was rejected by the destination|
   |unanswered|There is no response to the call connection from the server|
+
+  - call flow
+    - nomal: started -> ringing (optional) -> answered -> completed
+    - exception: started -> ringing(optional) -> unanswered | rejected | failed
 
 - direction
 
@@ -255,3 +254,26 @@ ___
 |80801|not_found_device|Device Not Found (microphone)
 |80802|permission_denied|Permission Denied (microphone)
 |80999|unknown_error|Unknown Error. Please contact us at Gitple
+
+## Migration
+#### Migration guide from SDK 0.0.x to 0.1.X
+
+- Initialize the SDK.
+  - The host field has been added to the initialization information.
+    ```javascript
+    try {
+      const config = {
+        host,  // Added Fields
+        app_id,
+        user_id,
+        token
+      };
+      // es6
+      const gitpleLiveVoiceClient = new VoiceClient(config);
+
+      // browser
+      const gitpleLiveVoiceClient = new GitpleLiveVoice.VoiceClient(config);
+    } catch (error) {
+      // handle error
+    }
+    ```

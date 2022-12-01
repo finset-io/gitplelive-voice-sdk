@@ -1,6 +1,6 @@
 {
   "name": "gitplelive-voice-sdk",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Gitple Voice SDK",
   "main": "voice.js",
   "author": "taehee <taehee.jang@gitplecorp.com>",

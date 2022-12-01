@@ -19,7 +19,12 @@ export interface CallPayload {
     status: string | 'started' | 'ringing' | 'answered' | 'completed' | 'failed' | 'unanswered' | 'rejected';
     direction: string | 'outbound' | 'inbound';
 }
-export declare class VoiceClient extends EventEmitter {
+declare class VoiceEventEmitter {
+    protected emitter: EventEmitter;
+    protected emit(eventName: string, args: any): void;
+    on(eventName: string, listener: (args: any) => void): void;
+}
+export declare class VoiceClient extends VoiceEventEmitter {
     private host;
     private appId;
     private userId;
@@ -51,3 +56,4 @@ export declare class VoiceClient extends EventEmitter {
     private checkUserSession;
     private getSessionId;
 }
+export {};
